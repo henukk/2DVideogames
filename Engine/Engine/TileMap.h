@@ -2,6 +2,7 @@
 #define _TILE_MAP_INCLUDE
 
 #include <string>
+#include <memory>
 #include <list>
 #include <glm/glm.hpp>
 #include "Texture.h"
@@ -33,7 +34,7 @@ private:
 	bool loadLevel(const std::string &levelFile);
 
 private:
-	std::list<GameObject*> entities;
+	std::list<std::unique_ptr<GameObject>> entities;
 	GameObject** map;
 
 	ShaderProgram* shaderProgram;

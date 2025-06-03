@@ -1,5 +1,7 @@
 #include "GameObject.h"
 
+GameObject::GameObject(TileMap* tilemap):map(tilemap) {};
+
 void GameObject::render() {
 	if (sprite != nullptr)
 		sprite->render();

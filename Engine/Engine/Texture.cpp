@@ -7,6 +7,7 @@ using namespace std;
 
 Texture::Texture()
 {
+	texId = 0;
 	wrapS = GL_REPEAT;
 	wrapT = GL_REPEAT;
 	minFilter = GL_LINEAR_MIPMAP_LINEAR;
@@ -110,4 +111,6 @@ void Texture::use() const
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
 }
 
-
+bool Texture::isLoaded() const {
+	return texId != 0;
+}

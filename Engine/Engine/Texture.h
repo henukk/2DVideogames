@@ -39,6 +39,7 @@ public:
 	int width() const { return widthTex; }
 	int height() const { return heightTex; }
 
+	bool isLoaded() const;
 private:
 	int widthTex, heightTex;
 	GLuint texId;

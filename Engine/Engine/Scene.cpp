@@ -51,6 +51,7 @@ void Scene::update(int deltaTime)
 	if (BACKGROUND != NULL) {
 		backgroundSprite->update(deltaTime);
 	}
+	map->update(deltaTime);
 	player->update(deltaTime);
 }
 

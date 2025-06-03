@@ -27,14 +27,14 @@ TileMap::TileMap(const string &levelFile, ShaderProgram &program)
 
 TileMap::~TileMap()
 {
-	if(map != NULL)
-		delete map;
+	delete[] map;
 }
 
 
 void TileMap::update(int deltaTime) {
-	for (auto& e : entities)
+	for (auto& e : entities) {
 		e->update(deltaTime);
+	}
 }
 
 void TileMap::render() const {
@@ -44,8 +44,6 @@ void TileMap::render() const {
 
 void TileMap::free()
 {
-	for (auto& obj : entities)
-		delete obj;
 	entities.clear();
 
 	delete[] map;
@@ -60,15 +58,21 @@ bool TileMap::loadLevel(const string &levelFile)
 		map[i] = nullptr;
 	}
 
-	UnbreakableBlock *block = new UnbreakableBlock();
+	auto block = std::make_unique<UnbreakableBlock>(
+		this,
+		UnbreakableBlock::Color::Yellow,
+		UnbreakableBlock::Length::X3,
+		UnbreakableBlock::Type::Vertical
+	);
 	block->init(glm::vec2(5, SCREEN_Y-5), *shaderProgram);
 
-	map[5 + ((SCREEN_Y - 5) * SCREEN_X)] = block;
-	map[5 + ((SCREEN_Y - 4) * SCREEN_X)] = block;
-	map[5 + ((SCREEN_Y - 3) * SCREEN_X)] = block;
-	map[5 + ((SCREEN_Y - 2) * SCREEN_X)] = block;
-	entities.push_back(block);
+	map[5 + ((SCREEN_Y - 5) * SCREEN_X)] = block.get();
+	map[5 + ((SCREEN_Y - 4) * SCREEN_X)] = block.get();
+	map[5 + ((SCREEN_Y - 3) * SCREEN_X)] = block.get();
+	map[5 + ((SCREEN_Y - 2) * SCREEN_X)] = block.get();
 
+	block->setTileMap(this);
+	entities.push_back(std::move(block));
 
 	return true;
 }

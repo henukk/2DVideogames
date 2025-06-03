@@ -7,6 +7,8 @@ class TileMap;
 
 class GameObject {
 public:
+	GameObject(TileMap* tilemap);
+
 	virtual ~GameObject() {
 		if (sprite != NULL)
 			delete sprite;
@@ -21,7 +23,6 @@ public:
 	virtual void setPosition(const glm::vec2& pos);
 	virtual glm::vec2 getPosition() const;
 
-	void setTileMap(TileMap* tileMap);
 	TileMap* getTileMap() const;
 
 	virtual bool isCollidable() const { return collidable; }

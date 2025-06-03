@@ -106,5 +106,9 @@ void Sprite::setPosition(const glm::vec2 &pos)
 	position = pos;
 }
 
+void Sprite::setTexCoordDispl(const glm::vec2& coord) {
+	texCoordDispl = coord;
+}
+
 
 

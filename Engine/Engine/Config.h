@@ -13,6 +13,7 @@
 
 #define SPRITES_IMAGE "images/sprites.png"
 #define SPRITE_SIZE 32.f
+#define COLOR_ROW_OFFSET 7
 
 #define INIT_PLAYER_X_TILES 1
 #define INIT_PLAYER_Y_TILES (SCREEN_Y - 2)
