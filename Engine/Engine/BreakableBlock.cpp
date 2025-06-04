@@ -38,11 +38,45 @@ void BreakableBlock::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderPro
         glm::vec2(float(sizeX) / SPRITE_SIZE, float(sizeY) / SPRITE_SIZE),
         &spritesheet, &shaderProgram
     );
-    sprite->setTexCoordDispl(glm::vec2(texX, texY));
+    setAnimations(texY);
     sprite->setPosition(position);
 
     collidable = true;
     interactable = false;
+}
+
+enum BreakableBlockAnims
+{
+    NORMAL, BREAKING
+};
+
+void BreakableBlock::setAnimations(float texY) {
+    sprite->setNumberAnimations(2);
+
+    sprite->setAnimationSpeed(NORMAL, 8);
+    sprite->addKeyframe(NORMAL, glm::vec2(0.f, texY));
+
+    int sizeX = 1;
+    if (type == Type::Horizontal) {
+        switch (length) {
+            case Length::X1: sizeX = 1; break;
+            case Length::X2: sizeX = 2; break;
+            case Length::X3: sizeX = 3; break;
+            case Length::X4: sizeX = 4; break;
+        }
+    }
+
+    float texX = float(sizeX) / float(SPRITE_SIZE);
+
+    sprite->setAnimationSpeed(BREAKING, 4);
+    sprite->addKeyframe(BREAKING, glm::vec2(texX, texY));
+    sprite->addKeyframe(BREAKING, glm::vec2(texX*2, texY));
+    sprite->addKeyframe(BREAKING, glm::vec2(texX*3, texY));
+    sprite->addKeyframe(BREAKING, glm::vec2(texX*4, texY));
+    sprite->setAnimationRepeat(BREAKING, false);
+
+
+    sprite->changeAnimation(NORMAL);
 }
 
 
@@ -72,9 +106,30 @@ int BreakableBlock::getSpriteRow(BreakableBlock::Color color, BreakableBlock::Le
 }
 
 void BreakableBlock::update(int deltaTime) {
-    if (sprite != nullptr) sprite->update(deltaTime);
+    static int i = 0;
+
+    if (i++ >= 100) {
+        breakBlock();
+    }
+
+    if (sprite != nullptr) {
+        if (isBreaked()) {
+            markForDestruction();
+        }
+        sprite->update(deltaTime);
+    }
 }
 
 void BreakableBlock::onCollision(GameObject* other) {
     // comportamiento por defecto (nada)
+}
+
+void BreakableBlock::breakBlock() {
+    if (sprite->animation() != BREAKING) {
+        sprite->changeAnimation(BREAKING);
+    }
+}
+
+bool BreakableBlock::isBreaked() {
+    return sprite->animation() == BREAKING && sprite->isAnimationEnd();
 }

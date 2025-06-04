@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Config.h"
 #include "UnbreakableBlock.h"
+#include "BreakableBlock.h"
 
 
 using namespace std;
@@ -31,6 +32,7 @@ TileMap::~TileMap()
 }
 
 void TileMap::update(int deltaTime) {
+
 	staticObjects.remove_if([this](const std::unique_ptr<StaticObject>& obj) {
 		if (obj->isMarkedForDestruction()) {
 			removeObject(obj.get(), obj.get()->getTileMapTilePos(), obj.get()->getSize());
@@ -84,8 +86,17 @@ bool TileMap::loadLevel(const string &levelFile)
 		UnbreakableBlock::Length::X3,
 		UnbreakableBlock::Type::Vertical
 	);
-	block->init(glm::vec2(5, SCREEN_Y-4), *shaderProgram);
+	block->init(glm::vec2(5, SCREEN_Y - 4), *shaderProgram);
 	staticObjects.push_back(std::move(block));
+
+	auto block2 = std::make_unique<BreakableBlock>(
+		this,
+		BreakableBlock::Color::Red,
+		BreakableBlock::Length::X4,
+		BreakableBlock::Type::Horizontal
+	);
+	block2->init(glm::vec2(6, SCREEN_Y - 5), *shaderProgram);
+	staticObjects.push_back(std::move(block2));
 
 	return true;
 }

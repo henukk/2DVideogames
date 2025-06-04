@@ -1,5 +1,5 @@
-#ifndef _UNBREAKABLE_BLOCK_INCLUDE
-#define _UNBREAKABLE_BLOCK_INCLUDE
+#ifndef _BREAKABLE_BLOCK_INCLUDE
+#define _BREAKABLE_BLOCK_INCLUDE
 
 #include "StaticObject.h"
 
@@ -16,6 +16,10 @@ public:
 	void onCollision(GameObject* other) override;
 
 	static int getSpriteRow(Color color, Length length, Type type);
+	void setAnimations(float texY);
+
+	void breakBlock();
+	bool isBreaked();
 
 private:
 	Color color;
@@ -25,4 +29,4 @@ private:
 	static Texture spritesheet;
 };
 
-#endif // _UNBREAKABLE_BLOCK_INCLUDE
+#endif // _BREAKABLE_BLOCK_INCLUDE

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
+    <ClInclude Include="BreakableBlock.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Game.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="UnbreakableBlock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BreakableBlock.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
