@@ -1,9 +1,9 @@
 #ifndef _UNBREAKABLE_BLOCK_INCLUDE
 #define _UNBREAKABLE_BLOCK_INCLUDE
 
-#include "GameObject.h"
+#include "StaticObject.h"
 
-class UnbreakableBlock : public GameObject {
+class UnbreakableBlock : public StaticObject {
 public:
 	enum class Color { Blue, Red, Yellow };
 	enum class Length { X1, X2, X3, X4 };
@@ -14,6 +14,8 @@ public:
 	void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) override;
 	void update(int deltaTime) override;
 	void onCollision(GameObject* other) override;
+
+	static int getSpriteRow(Color color, Length length, Type type);
 
 private:
 	Color color;

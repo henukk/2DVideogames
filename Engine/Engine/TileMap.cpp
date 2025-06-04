@@ -30,21 +30,41 @@ TileMap::~TileMap()
 	delete[] map;
 }
 
-
 void TileMap::update(int deltaTime) {
-	for (auto& e : entities) {
-		e->update(deltaTime);
-	}
+	staticObjects.remove_if([this](const std::unique_ptr<StaticObject>& obj) {
+		if (obj->isMarkedForDestruction()) {
+			removeObject(obj.get(), obj.get()->getTileMapTilePos(), obj.get()->getSize());
+			return true;
+		}
+		return false;
+		});
+
+	for (auto& obj : staticObjects)
+		obj->update(deltaTime);
+
+	dynamicObjects.remove_if([](const std::unique_ptr<DynamicObject>& obj) {
+		return obj->isMarkedForDestruction();
+		});
+
+	for (auto& obj : dynamicObjects)
+		obj->update(deltaTime);
 }
 
+
+
 void TileMap::render() const {
-	for (auto& e : entities)
-		e->render();
+	for (auto& obj : staticObjects)
+		obj->render();
+
+	for (auto& obj : dynamicObjects)
+		obj->render();
+
 }
 
 void TileMap::free()
 {
-	entities.clear();
+	dynamicObjects.clear();
+	staticObjects.clear();
 
 	delete[] map;
 	map = nullptr;
@@ -60,22 +80,41 @@ bool TileMap::loadLevel(const string &levelFile)
 
 	auto block = std::make_unique<UnbreakableBlock>(
 		this,
-		UnbreakableBlock::Color::Yellow,
+		UnbreakableBlock::Color::Blue,
 		UnbreakableBlock::Length::X3,
 		UnbreakableBlock::Type::Vertical
 	);
-	block->init(glm::vec2(5, SCREEN_Y-5), *shaderProgram);
-
-	map[5 + ((SCREEN_Y - 5) * SCREEN_X)] = block.get();
-	map[5 + ((SCREEN_Y - 4) * SCREEN_X)] = block.get();
-	map[5 + ((SCREEN_Y - 3) * SCREEN_X)] = block.get();
-	map[5 + ((SCREEN_Y - 2) * SCREEN_X)] = block.get();
-
-	block->setTileMap(this);
-	entities.push_back(std::move(block));
+	block->init(glm::vec2(5, SCREEN_Y-4), *shaderProgram);
+	staticObjects.push_back(std::move(block));
 
 	return true;
 }
+
+void TileMap::registerObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size) {
+	for (int y = 0; y < size.y; ++y) {
+		for (int x = 0; x < size.x; ++x) {
+			int mapX = tilePos.x + x;
+			int mapY = tilePos.y + y;
+			if (mapX >= 0 && mapX < SCREEN_X && mapY >= 0 && mapY < SCREEN_Y)
+				map[mapY * SCREEN_X + mapX] = obj;
+		}
+	}
+}
+
+void TileMap::removeObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size) {
+	for (int y = 0; y < size.y; ++y) {
+		for (int x = 0; x < size.x; ++x) {
+			int mapX = tilePos.x + x;
+			int mapY = tilePos.y + y;
+			if (mapX >= 0 && mapX < SCREEN_X && mapY >= 0 && mapY < SCREEN_Y) {
+				int index = mapY * SCREEN_X + mapX;
+				if (map[index] == obj)
+					map[index] = nullptr;
+			}
+		}
+	}
+}
+
 
 
 

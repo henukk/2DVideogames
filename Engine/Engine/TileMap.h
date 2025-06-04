@@ -7,7 +7,9 @@
 #include <glm/glm.hpp>
 #include "Texture.h"
 #include "ShaderProgram.h"
-#include "GameObject.h"
+#include "DynamicObject.h"
+#include "StaticObject.h"
+
 
 class TileMap
 {
@@ -18,6 +20,9 @@ private:
 public:
 	// Tile maps can only be created inside an OpenGL context
 	static TileMap *createTileMap(const std::string &levelFile, ShaderProgram &program);
+	
+	void registerObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size);
+	void removeObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size);
 
 	~TileMap();
 	
@@ -34,7 +39,9 @@ private:
 	bool loadLevel(const std::string &levelFile);
 
 private:
-	std::list<std::unique_ptr<GameObject>> entities;
+	std::list<std::unique_ptr<DynamicObject>> dynamicObjects;
+	std::list<std::unique_ptr<StaticObject>> staticObjects;
+
 	GameObject** map;
 
 	ShaderProgram* shaderProgram;

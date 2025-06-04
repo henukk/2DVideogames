@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -14,17 +13,25 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="UnbreakableBlock.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="UnbreakableBlock.cpp">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects\DynamicObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Sprite.h" />
@@ -35,13 +42,22 @@
     <ClInclude Include="GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="UnbreakableBlock.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="TileMap.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Config.h" />
+    <ClInclude Include="DynamicObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="UnbreakableBlock.h">
+      <Filter>GameObjects\StaticObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects\DynamicObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -49,6 +65,12 @@
     </Filter>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{570b8652-58c3-4ed4-80fb-82d35bf14408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\StaticObjects">
+      <UniqueIdentifier>{951b91c8-685d-463b-8d8e-1c6ebed85eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\DynamicObjects">
+      <UniqueIdentifier>{63f8c3d3-8bd0-4de9-bf67-bc903c83db8c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
