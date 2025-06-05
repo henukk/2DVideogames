@@ -64,6 +64,12 @@
     <ClInclude Include="BreakableBlock.h">
       <Filter>GameObjects\StaticObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Quadtree.h">
+      <Filter>stdExtension</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>stdExtension</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -77,6 +83,9 @@
     </Filter>
     <Filter Include="GameObjects\DynamicObjects">
       <UniqueIdentifier>{63f8c3d3-8bd0-4de9-bf67-bc903c83db8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stdExtension">
+      <UniqueIdentifier>{7b8dd15e-4a95-4a4d-a848-6cc7cff48185}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
