@@ -22,7 +22,7 @@ void BreakableBlock::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderPro
 
     size = glm::vec2(sizeX, sizeY);
 
-    StaticObject::init(tileMapPos, glm::ivec2(sizeX, sizeY), shaderProgram);
+    StaticObject::init(tileMapPos, glm::ivec2(sizeX, sizeY) * TILE_SIZE, shaderProgram);
 
     if (!spritesheet.isLoaded()) {
         spritesheet.loadFromFile(SPRITES_IMAGE, TEXTURE_PIXEL_FORMAT_RGBA);

@@ -1,6 +1,7 @@
 #ifndef _QUADTREE_H_
 #define _QUADTREE_H_
 
+#include <type_traits>
 #include <glm/glm.hpp>
 #include <vector>
 #include <memory>
@@ -20,7 +21,11 @@ namespace stdExtension {
             BOT_RIGHT = 3
         };
 
-        using Vec2 = glm::vec<2, TCoord>;
+        using Vec2 = typename std::conditional<
+            std::is_same<TCoord, float>::value,
+            glm::vec2,
+            glm::ivec2
+        >::type;
 
         struct Node {
             int level;
@@ -61,8 +66,8 @@ namespace stdExtension {
         std::unique_ptr<Node> root;
 
         void insert(Node* node, const T& object) {
-            Vec2 objPos = object.getPosition();
-            Vec2 objSize = object.getSize();
+            Vec2 objPos = object->getPosition();
+            Vec2 objSize = object->getSize();
 
             if (!fitsInside(objPos, objSize, node->topLeft, node->size))
                 return;
@@ -133,8 +138,8 @@ namespace stdExtension {
                 return;
 
             for (const auto& obj : node->objects) {
-                Vec2 objPos = obj.getPosition();
-                Vec2 objSize = obj.getSize();
+                Vec2 objPos = obj->getPosition();
+                Vec2 objSize = obj->getSize();
 
                 if (intersects(pos, size, objPos, objSize))
                     result.push_back(obj);

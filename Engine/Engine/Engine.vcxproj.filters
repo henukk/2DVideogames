@@ -67,9 +67,6 @@
     <ClInclude Include="Quadtree.h">
       <Filter>stdExtension</Filter>
     </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>stdExtension</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">

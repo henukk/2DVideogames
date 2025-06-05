@@ -9,46 +9,35 @@
 #include "ShaderProgram.h"
 #include "DynamicObject.h"
 #include "StaticObject.h"
-
+#include "Quadtree.h"
 
 class TileMap
 {
-
 private:
-	TileMap(const std::string &levelFile, ShaderProgram &program);
+	TileMap(const std::string& levelFile, ShaderProgram& program);
 
 public:
-	// Tile maps can only be created inside an OpenGL context
-	static TileMap *createTileMap(const std::string &levelFile, ShaderProgram &program);
-	
-	void registerObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size);
-	void removeObject(GameObject* obj, const glm::ivec2& tilePos, const glm::ivec2& size);
+	static TileMap* createTileMap(const std::string& levelFile, ShaderProgram& program);
 
 	~TileMap();
-	
+
 	void update(int deltaTime);
 	void render() const;
 	void free();
 
-	bool collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) const;
-	bool collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) const;
+	bool collisionMoveLeft(const glm::ivec2& pos, const glm::ivec2& size) const;
+	bool collisionMoveRight(const glm::ivec2& pos, const glm::ivec2& size) const;
 	bool collisionMoveDown(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
 	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
-	
+
 private:
-	bool loadLevel(const std::string &levelFile);
+	bool loadLevel(const std::string& levelFile);
 
 private:
 	std::list<std::unique_ptr<DynamicObject>> dynamicObjects;
 	std::list<std::unique_ptr<StaticObject>> staticObjects;
-
-	GameObject** map;
-
+	stdExtension::Quadtree<GameObject*, float> staticObjectTree;
 	ShaderProgram* shaderProgram;
-
 };
 
-
 #endif // _TILE_MAP_INCLUDE
-
-

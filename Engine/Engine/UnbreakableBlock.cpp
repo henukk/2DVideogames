@@ -11,10 +11,10 @@ void UnbreakableBlock::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderP
     int sizeX = 1, sizeY = 1;
 
     switch (length) {
-    case Length::X1: sizeX = 1; break;
-    case Length::X2: sizeX = 2; break;
-    case Length::X3: sizeX = 3; break;
-    case Length::X4: sizeX = 4; break;
+        case Length::X1: sizeX = 1; break;
+        case Length::X2: sizeX = 2; break;
+        case Length::X3: sizeX = 3; break;
+        case Length::X4: sizeX = 4; break;
     }
 
     if (type == Type::Vertical && length != Length::X1)
@@ -22,7 +22,7 @@ void UnbreakableBlock::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderP
 
     size = glm::vec2(sizeX, sizeY);
 
-    StaticObject::init(tileMapPos, glm::ivec2(sizeX, sizeY), shaderProgram);
+    StaticObject::init(tileMapPos, glm::ivec2(sizeX, sizeY)*TILE_SIZE, shaderProgram);
 
     if (!spritesheet.isLoaded()) {
         spritesheet.loadFromFile(SPRITES_IMAGE, TEXTURE_PIXEL_FORMAT_RGBA);
