@@ -77,28 +77,37 @@ bool TileMap::loadLevel(const string& levelFile) {
 		BreakableBlock::Length::X4,
 		BreakableBlock::Type::Horizontal
 	);
-	block2->init(glm::vec2(6, SCREEN_Y - 5), *shaderProgram);
+	block2->init(glm::vec2(1, SCREEN_Y - 5), *shaderProgram);
 	staticObjectTree.insert(block2.get());
 	staticObjects.push_back(std::move(block2));
 
 	return true;
 }
 
-bool TileMap::collisionMoveLeft(const glm::ivec2& pos, const glm::ivec2& size) const {
+bool TileMap::collisionMoveLeft(const glm::ivec2& pos, const glm::ivec2& size, int* posX) const {
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
-		if (obj && obj->isCollidable()) return true;
+		if (obj && obj->isCollidable()) {
+			int rightEdge = static_cast<int>(obj->getPosition().x + obj->getSize().x);
+			*posX = rightEdge;
+			return true;
+		}
 	}
 	return false;
 }
 
-bool TileMap::collisionMoveRight(const glm::ivec2& pos, const glm::ivec2& size) const {
+bool TileMap::collisionMoveRight(const glm::ivec2& pos, const glm::ivec2& size, int* posX) const {
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
-		if (obj && obj->isCollidable()) return true;
+		if (obj && obj->isCollidable()) {
+			int leftEdge = static_cast<int>(obj->getPosition().x);
+			*posX = leftEdge - size.x;
+			return true;
+		}
 	}
 	return false;
 }
+
 
 bool TileMap::collisionMoveDown(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const {
 	if((pos.y + size.y - 1) >= DOWN_MARGIN * TILE_SIZE) {
