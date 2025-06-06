@@ -19,6 +19,8 @@ void Game::init()
 	bPlay = true;
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	
+	AudioManager::instance().init();
+
 	scene = std::make_unique<Level1>();
 	scene->init();
 }
@@ -34,6 +36,11 @@ void Game::render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	scene->render();
+}
+
+void Game::shutdown()
+{
+	AudioManager::instance().shutdown();
 }
 
 void Game::keyPressed(int key)

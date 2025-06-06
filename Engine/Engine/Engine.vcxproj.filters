@@ -34,6 +34,9 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -76,6 +79,9 @@
     <ClInclude Include="Level.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -92,6 +98,9 @@
     </Filter>
     <Filter Include="stdExtension">
       <UniqueIdentifier>{7b8dd15e-4a95-4a4d-a848-6cc7cff48185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{262298ff-e623-42fd-ba46-ad929f713c3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

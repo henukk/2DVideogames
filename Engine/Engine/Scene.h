@@ -1,6 +1,8 @@
 #ifndef _SCENE_INCLUDE
 #define _SCENE_INCLUDE
 
+#include "AudioManager.h"
+
 class Scene {
 public:
     virtual ~Scene() {}

@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 #include <memory>
 #include "Scene.h"
+#include "AudioManager.h"
+
 
 class Game
 {
@@ -16,6 +18,7 @@ public:
 	void init();
 	bool update(int deltaTime);
 	void render();
+	void shutdown();
 
 	void keyPressed(int key);
 	void keyReleased(int key);
