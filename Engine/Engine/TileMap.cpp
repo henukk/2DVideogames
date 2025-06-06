@@ -109,7 +109,7 @@ bool TileMap::collisionMoveDown(const glm::ivec2& pos, const glm::ivec2& size, i
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
 		if (obj && obj->isCollidable()) {
-			*posY = obj->getPosition().y - size.y;
+			*posY = static_cast<int>(obj->getPosition().y - size.y);
 			return true;
 		}
 	}
@@ -120,7 +120,7 @@ bool TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
 		if (obj && obj->isCollidable()) {
-			*posY = obj->getPosition().y + obj->getSize().y;
+			*posY = static_cast<int>(obj->getPosition().y + obj->getSize().y);
 			return true;
 		}
 	}

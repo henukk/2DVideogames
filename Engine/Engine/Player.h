@@ -1,37 +1,28 @@
 #ifndef _PLAYER_INCLUDE
 #define _PLAYER_INCLUDE
 
+#include "DynamicObject.h"
+#include "ShaderProgram.h"
 
-#include "Sprite.h"
-#include "TileMap.h"
-
-
-// Player is basically a Sprite that represents the player. As such it has
-// all properties it needs to track its movement, jumping, and collisions.
-
-
-class Player
-{
-
+class Player : public DynamicObject {
 public:
-	void init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram);
-	void update(int deltaTime);
-	void render();
-	
-	void setTileMap(TileMap *tileMap);
-	void setPosition(const glm::vec2 &pos);
-	
-private:
-	bool bJumping;
-	glm::ivec2 tileMapDispl, posPlayer;
-	int jumpAngle, startY;
-	Texture spritesheet;
-	Sprite *sprite;
-	TileMap *map;
+    Player(TileMap* tileMap);
+    ~Player() override = default;
 
+    void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) override;
+    void update(int deltaTime) override;
+
+private:
+    bool bJumping;
+    int jumpAngle, startY;
+
+    static constexpr int JUMP_ANGLE_STEP = 4;
+    static constexpr int JUMP_HEIGHT = 96;
+    static constexpr int FALL_STEP = 4;
+
+    enum PlayerAnims {
+        STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT
+    };
 };
 
-
 #endif // _PLAYER_INCLUDE
-
-
