@@ -37,6 +37,9 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -82,6 +85,9 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -101,6 +107,9 @@
     </Filter>
     <Filter Include="Audio">
       <UniqueIdentifier>{262298ff-e623-42fd-ba46-ad929f713c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{a124e4bc-306c-40d5-98f7-afca24261447}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
