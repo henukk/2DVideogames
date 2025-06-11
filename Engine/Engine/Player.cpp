@@ -44,6 +44,10 @@ void Player::update(int deltaTime) {
     const glm::ivec2 iSize(PLAYER_WIDTH, PLAYER_HEIGTH);
     glm::ivec2 iPos = glm::ivec2(position);
 
+    if (Game::instance().getKey(GLFW_KEY_1)) {
+        UIManager::instance().createFloatingPoints("123", glm::vec2(position + glm::vec2(TILE_SIZE, TILE_SIZE)), 1000.f);
+    }
+
     // Horizontal movement
     if (Game::instance().getKey(GLFW_KEY_LEFT)) {
         if (sprite->animation() != MOVE_LEFT)

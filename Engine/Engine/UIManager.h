@@ -3,7 +3,11 @@
 
 #include <vector>
 #include <string>
+#include <map>
 #include <glm/glm.hpp>
+#include "ShaderProgram.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 struct FloatingText {
     std::string text;
@@ -11,6 +15,13 @@ struct FloatingText {
     glm::vec2 velocity;
     float lifetime;
     float elapsed;
+};
+
+struct Character {
+    unsigned int textureID;
+    glm::ivec2 size;
+    glm::ivec2 bearing;
+    unsigned int advance;
 };
 
 class UIManager {
@@ -33,8 +44,16 @@ private:
     UIManager(const UIManager&) = delete;
     UIManager& operator=(const UIManager&) = delete;
 
+    void loadFont(const std::string& fontPath, unsigned int fontSize);
+    void drawText(const std::string& text, glm::vec2 pos);
+
 private:
     std::vector<FloatingText> floatingTexts;
+    std::map<char, Character> characters;
+    FT_Library ft;
+    FT_Face face;
+    ShaderProgram textShader;
+    unsigned int VAO, VBO;
 };
 
 #endif // _UI_MANAGER_INCLUDE
