@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Sprite.h"
 #include "ShaderProgram.h"
+#include "UIManager.h"
 
 class Level : public Scene {
 public:

@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Config.h"
 #include "TileMap.h"
+#include "UIManager.h"
 
 Player::Player(TileMap* tileMap) : DynamicObject(tileMap), bJumping(false), jumpAngle(0), startY(0) {
     collidable = true;

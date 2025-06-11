@@ -18,6 +18,8 @@ void Level::update(int deltaTime) {
         map->update(deltaTime);
     if (player)
         player->update(deltaTime);
+
+    UIManager::instance().update(deltaTime);
 }
 
 void Level::render() {
@@ -32,6 +34,8 @@ void Level::render() {
     if (backgroundSprite) backgroundSprite->render();
     if (map) map->render();
     if (player) player->render();
+
+    UIManager::instance().render();
 }
 
 void Level::initShaders() {

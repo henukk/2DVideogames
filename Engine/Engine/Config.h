@@ -19,12 +19,12 @@
 
 #define TILE_SIZE (8 * SCALE)
 
-#define LEFT_MARGIN (0)
+#define LEFT_MARGIN (1)
 #define RIGHT_MARGIN (SCREEN_X - 1)
 #define DOWN_MARGIN (SCREEN_Y - 1)
 #define TOP_MARGIN (TILE_SIZE * 1)
 
-#define PLAYER_WIDTH 32
-#define PLAYER_HEIGTH 48
+#define PLAYER_WIDTH (TILE_SIZE*2)
+#define PLAYER_HEIGTH (TILE_SIZE*3)
 
 #endif // _CONFIG_INCLUDE

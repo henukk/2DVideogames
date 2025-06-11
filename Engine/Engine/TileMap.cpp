@@ -85,6 +85,11 @@ bool TileMap::loadLevel(const string& levelFile) {
 }
 
 bool TileMap::collisionMoveLeft(const glm::ivec2& pos, const glm::ivec2& size, int* posX) const {
+	if ((pos.x) <= LEFT_MARGIN * TILE_SIZE) {
+		*posX = LEFT_MARGIN * TILE_SIZE;
+		return true;
+	}
+
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
 		if (obj && obj->isCollidable()) {
@@ -97,6 +102,11 @@ bool TileMap::collisionMoveLeft(const glm::ivec2& pos, const glm::ivec2& size, i
 }
 
 bool TileMap::collisionMoveRight(const glm::ivec2& pos, const glm::ivec2& size, int* posX) const {
+	if ((pos.x + size.x - 1) >= RIGHT_MARGIN * TILE_SIZE) {
+		*posX = RIGHT_MARGIN * TILE_SIZE - size.x;
+		return true;
+	}
+
 	auto results = staticObjectTree.query(glm::vec2(pos), glm::vec2(size));
 	for (auto obj : results) {
 		if (obj && obj->isCollidable()) {
