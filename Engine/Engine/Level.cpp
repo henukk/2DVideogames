@@ -4,6 +4,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
+void Level::init() {
+    Scene::init();
+}
+
 Level::~Level() {
     delete map;
     delete player;

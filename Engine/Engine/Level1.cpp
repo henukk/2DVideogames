@@ -4,6 +4,8 @@
 #include <iostream>
 
 void Level1::init() {
+    Level::init();
+
     initShaders();
     loadLevelData();
     loadBackground();

@@ -20,8 +20,10 @@ void UIManager::init() {
         std::cerr << "Failed to init FreeType" << std::endl;
         return;
     }
+    
+    cout << "eiow eiow" << endl; 
+    loadFont("assets/fonts/PressStart2P-Regular.ttf", 24);
 
-    loadFont("fonts/arial.ttf", 24);
 
     Shader vShader, fShader;
     vShader.initFromFile(VERTEX_SHADER, "shaders/text.vert");
@@ -41,11 +43,17 @@ void UIManager::init() {
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
+
 
 void UIManager::shutdown() {
     FT_Done_Face(face);
@@ -65,7 +73,10 @@ void UIManager::loadFont(const std::string& fontPath, unsigned int fontSize) {
 
     characters.clear();
     for (unsigned char c = 0; c < 128; ++c) {
-        if (FT_Load_Char(face, c, FT_LOAD_RENDER)) continue;
+        if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
+            std::cerr << "Failed to load glyph: '" << c << "'" << std::endl;
+            continue;
+        }
 
         unsigned int texture;
         glGenTextures(1, &texture);
@@ -100,6 +111,7 @@ void UIManager::update(int deltaTime) {
     );
 }
 
+#if 0
 void UIManager::render() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -116,6 +128,25 @@ void UIManager::render() {
     glBindVertexArray(0);
     glDisable(GL_BLEND);
 }
+#endif
+void UIManager::render() {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    textShader.use();
+    glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
+    textShader.setUniformMatrix4f("projection", projection);
+    textShader.setUniform3f("textColor", 1.0f, 1.0f, 1.0f);
+    glActiveTexture(GL_TEXTURE0);
+    glBindVertexArray(VAO);
+
+    // TEST
+    drawText("Hello World", glm::vec2(50, 50));
+
+    glBindVertexArray(0);
+    glDisable(GL_BLEND);
+}
+
+
 
 void UIManager::drawText(const std::string& text, glm::vec2 pos) {
     float scale = 1.0f;
