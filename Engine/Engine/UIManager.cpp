@@ -20,14 +20,12 @@ void UIManager::init() {
         std::cerr << "Failed to init FreeType" << std::endl;
         return;
     }
-    
-    cout << "eiow eiow" << endl; 
-    loadFont("assets/fonts/PressStart2P-Regular.ttf", 24);
 
+    loadFont(FILE_ARCADE_FONT_1, TILE_SIZE);
 
     Shader vShader, fShader;
-    vShader.initFromFile(VERTEX_SHADER, "shaders/text.vert");
-    fShader.initFromFile(FRAGMENT_SHADER, "shaders/text.frag");
+    vShader.initFromFile(VERTEX_SHADER, FILE_VERTEX_SHADER_TEXT);
+    fShader.initFromFile(FRAGMENT_SHADER, FILE_FRAGMENT_SHADER_TEXT);
 
     textShader.init();
     textShader.addShader(vShader);
@@ -54,7 +52,6 @@ void UIManager::init() {
     glBindVertexArray(0);
 }
 
-
 void UIManager::shutdown() {
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
@@ -64,9 +61,10 @@ void UIManager::shutdown() {
 
 void UIManager::loadFont(const std::string& fontPath, unsigned int fontSize) {
     if (FT_New_Face(ft, fontPath.c_str(), 0, &face)) {
-        std::cerr << "Failed to load font: " << fontPath << std::endl;
+        std::cerr << "[UIManager] Fuente no encontrada en " << fontPath << "." << std::endl;
         return;
     }
+    std::cout << "[UIManager] Fuente cargada correctamente." << std::endl;
 
     FT_Set_Pixel_Sizes(face, 0, fontSize);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -111,13 +109,19 @@ void UIManager::update(int deltaTime) {
     );
 }
 
-#if 0
 void UIManager::render() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     textShader.use();
+
     glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
     textShader.setUniformMatrix4f("projection", projection);
+    textShader.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
+
+    GLint texLoc = glGetUniformLocation(textShader.getProgramID(), "tex");
+    if (texLoc != -1)
+        glUniform1i(texLoc, 0);
+
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
@@ -128,29 +132,15 @@ void UIManager::render() {
     glBindVertexArray(0);
     glDisable(GL_BLEND);
 }
-#endif
-void UIManager::render() {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    textShader.use();
-    glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
-    textShader.setUniformMatrix4f("projection", projection);
-    textShader.setUniform3f("textColor", 1.0f, 1.0f, 1.0f);
-    glActiveTexture(GL_TEXTURE0);
-    glBindVertexArray(VAO);
-
-    // TEST
-    drawText("Hello World", glm::vec2(50, 50));
-
-    glBindVertexArray(0);
-    glDisable(GL_BLEND);
-}
-
-
 
 void UIManager::drawText(const std::string& text, glm::vec2 pos) {
     float scale = 1.0f;
+    glm::mat4 modelview = glm::mat4(1.0f);
+    textShader.setUniformMatrix4f("modelview", modelview);
+    textShader.setUniform2f("texCoordDispl", 0.f, 0.f);
     for (char c : text) {
+        if (characters.find(c) == characters.end()) continue;
+
         Character ch = characters[c];
 
         float xpos = pos.x + ch.bearing.x * scale;

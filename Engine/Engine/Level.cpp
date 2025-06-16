@@ -45,11 +45,11 @@ void Level::render() {
 void Level::initShaders() {
     Shader vShader, fShader;
 
-    vShader.initFromFile(VERTEX_SHADER, "shaders/texture.vert");
+    vShader.initFromFile(VERTEX_SHADER, FILE_VERTEX_SHADER_TEXTURE);
     if (!vShader.isCompiled())
         std::cerr << "Vertex Shader Error:\n" << vShader.log() << "\n";
 
-    fShader.initFromFile(FRAGMENT_SHADER, "shaders/texture.frag");
+    fShader.initFromFile(FRAGMENT_SHADER, FILE_FRAGMENT_SHADER_TEXTURE);
     if (!fShader.isCompiled())
         std::cerr << "Fragment Shader Error:\n" << fShader.log() << "\n";
 

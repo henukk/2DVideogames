@@ -17,7 +17,7 @@ void Level1::init() {
 }
 
 void Level1::loadLevelData() {
-    map = TileMap::createTileMap(TILEMAP, texProgram);
+    map = TileMap::createTileMap("TILEMAP", texProgram);
 
     player = new Player(map);
     player->init(glm::ivec2(0, 0), texProgram);

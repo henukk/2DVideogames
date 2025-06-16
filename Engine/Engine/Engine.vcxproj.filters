@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -39,6 +39,9 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +93,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="stdExtension">
+      <UniqueIdentifier>{7b8dd15e-4a95-4a4d-a848-6cc7cff48185}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{fc4ec7e1-d3b0-4e44-a3d6-c7ec8af2e6b2}</UniqueIdentifier>
     </Filter>
@@ -102,14 +108,57 @@
     <Filter Include="GameObjects\DynamicObjects">
       <UniqueIdentifier>{63f8c3d3-8bd0-4de9-bf67-bc903c83db8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="stdExtension">
-      <UniqueIdentifier>{7b8dd15e-4a95-4a4d-a848-6cc7cff48185}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Audio">
       <UniqueIdentifier>{262298ff-e623-42fd-ba46-ad929f713c3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{a124e4bc-306c-40d5-98f7-afca24261447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{17d22eda-cc16-4aa1-9562-d8a1d033b933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Fonts">
+      <UniqueIdentifier>{6346657f-05f1-4fb0-bc62-08abac9672d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{d991d08e-7af5-4dfd-80ac-b11f0b110590}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\fonts\PressStart2P-Regular.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="assets\fonts\PixelifySans-VariableFont_wght.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="assets\fonts\Silkscreen-Bold.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="assets\fonts\Silkscreen-Regular.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="assets\fonts\VT323-Regular.ttf">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\text.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\text.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\texture.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\texture.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\simple.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\simple.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -3,7 +3,6 @@
 #include "Game.h"
 #include "Config.h"
 
-
 #define TARGET_FRAMERATE 60.0f
 
 

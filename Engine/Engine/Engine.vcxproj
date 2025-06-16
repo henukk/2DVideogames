@@ -52,6 +52,21 @@
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UnbreakableBlock.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\fonts\PixelifySans-VariableFont_wght.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\fonts\PressStart2P-Regular.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\fonts\Silkscreen-Bold.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\fonts\Silkscreen-Regular.ttf" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\fonts\VT323-Regular.ttf" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\simple.frag" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\shaders\simple.vert" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\shaders\text.frag" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\shaders\text.vert" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\shaders\texture.frag" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\shaders\texture.vert" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -95,6 +110,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\libs\Simple OpenGL Image Library\src;..\libs\glew-1.13.0\include;..\libs\glm;..\libs\glfw-3.3.8\include;..\libs\miniaudio-0.11.22;..\libs\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,7 +142,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <ItemGroup>
-    <None Include="assets\**\*" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
 </Project>

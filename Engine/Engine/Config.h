@@ -1,18 +1,18 @@
 #ifndef _CONFIG_INCLUDE
 #define _CONFIG_INCLUDE
 
-#define WINDOW_GAME_TITLE "GAME TITLE"
+constexpr auto WINDOW_GAME_TITLE = "GAME TITLE";
 #define SCALE 2
 #define SCREEN_WIDTH (384*SCALE)
 #define SCREEN_HEIGHT (208*SCALE)
 #define SCREEN_X 48
 #define SCREEN_Y 26
 
-#define BACKGROUND "images/backgrounds/stage1-1.png"
-#define TILEMAP "levels/level01.txt"
+constexpr auto BACKGROUND = "images/backgrounds/stage1-1.png";
+constexpr auto TILEMAP = "levels/level01.txt";
 
-#define SPRITES_IMAGE "images/sprites.png"
-#define SPRITE_SIZE 64.f
+constexpr auto SPRITES_IMAGE = "images/sprites.png";
+constexpr auto SPRITE_SIZE = 64.f;
 
 #define INIT_PLAYER_X_TILES 1
 #define INIT_PLAYER_Y_TILES (SCREEN_Y - 2)
@@ -26,5 +26,17 @@
 
 #define PLAYER_WIDTH (TILE_SIZE*2)
 #define PLAYER_HEIGTH (TILE_SIZE*3)
+
+constexpr auto FILE_VERTEX_SHADER_TEXTURE = "assets/shaders/texture.vert";
+constexpr auto FILE_FRAGMENT_SHADER_TEXTURE = "assets/shaders/texture.frag";
+constexpr auto FILE_VERTEX_SHADER_TEXT = "assets/shaders/text.vert";
+constexpr auto FILE_FRAGMENT_SHADER_TEXT = "assets/shaders/text.frag";
+
+constexpr auto FILE_ARCADE_FONT_1 = "assets/fonts/PixelifySans-VariableFont_wght.ttf";
+constexpr auto FILE_ARCADE_FONT_2 = "assets/fonts/PressStart2P-Regular.ttf";
+constexpr auto FILE_ARCADE_FONT_3 = "assets/fonts/Silkscreen-Bold.ttf";
+constexpr auto FILE_ARCADE_FONT_4 = "assets/fonts/Silkscreen-Regular.ttf";
+constexpr auto FILE_ARCADE_FONT_5 = "assets/fonts/VT323-Regular.ttf";
+
 
 #endif // _CONFIG_INCLUDE
