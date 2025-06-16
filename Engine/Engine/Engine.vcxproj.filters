@@ -93,6 +93,33 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{17d22eda-cc16-4aa1-9562-d8a1d033b933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Audios">
+      <UniqueIdentifier>{4a34870f-3e47-47e7-9c05-83e6f6df606c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Fonts">
+      <UniqueIdentifier>{6346657f-05f1-4fb0-bc62-08abac9672d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Images">
+      <UniqueIdentifier>{3de103c6-b081-4897-8f2d-d00d682e21cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Images\Backgrounds">
+      <UniqueIdentifier>{5632cd4d-354b-41e7-9400-1a1ea7c56884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Levels">
+      <UniqueIdentifier>{a216cb53-c853-494c-9e53-9f010d9a06e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Audios\Music">
+      <UniqueIdentifier>{3088584a-f794-4ea6-b47e-96be32cd349d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Audios\SFX">
+      <UniqueIdentifier>{00283822-cd45-4f1d-915b-d3759cbfb403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{d991d08e-7af5-4dfd-80ac-b11f0b110590}</UniqueIdentifier>
+    </Filter>
     <Filter Include="stdExtension">
       <UniqueIdentifier>{7b8dd15e-4a95-4a4d-a848-6cc7cff48185}</UniqueIdentifier>
     </Filter>
@@ -114,15 +141,6 @@
     <Filter Include="UI">
       <UniqueIdentifier>{a124e4bc-306c-40d5-98f7-afca24261447}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{17d22eda-cc16-4aa1-9562-d8a1d033b933}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Fonts">
-      <UniqueIdentifier>{6346657f-05f1-4fb0-bc62-08abac9672d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Shaders">
-      <UniqueIdentifier>{d991d08e-7af5-4dfd-80ac-b11f0b110590}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\fonts\PressStart2P-Regular.ttf">
@@ -139,6 +157,168 @@
     </None>
     <None Include="assets\fonts\VT323-Regular.ttf">
       <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage1-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage1-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage1-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage2-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage2-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage2-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage3-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage3-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage3-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage4-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage4-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage4-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage5-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage5-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage5-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage6-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage6-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage6-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage7-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage7-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage7-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage8-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage8-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage8-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage9-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage9-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage9-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage10-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage10-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage10-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage11-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage11-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage11-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage12-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage12-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage12-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage13-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage13-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage13-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage14-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage14-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage14-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage15-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage15-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage15-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage16-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage16-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage16-3.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage17-1.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\backgrounds\stage17-2.png">
+      <Filter>Assets\Images\Backgrounds</Filter>
+    </None>
+    <None Include="assets\images\sprites.png">
+      <Filter>Assets\Images</Filter>
+    </None>
+    <None Include="assets\images\bub.png">
+      <Filter>Assets\Images</Filter>
+    </None>
+    <None Include="assets\audio\music\template.mp3">
+      <Filter>Assets\Audios\Music</Filter>
+    </None>
+    <None Include="assets\levels\level01.txt">
+      <Filter>Assets\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

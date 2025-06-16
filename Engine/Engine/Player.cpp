@@ -4,7 +4,6 @@
 #include "Config.h"
 #include "TileMap.h"
 #include "UIManager.h"
-#include <iostream>
 
 Player::Player(TileMap* tileMap) : DynamicObject(tileMap), bJumping(false), jumpAngle(0), startY(0) {
     collidable = true;
@@ -14,7 +13,7 @@ void Player::init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram) {
     position = glm::vec2(tileMapPos * TILE_SIZE);
     size = glm::vec2(PLAYER_WIDTH, PLAYER_HEIGTH);
 
-    spritesheet.loadFromFile("images/bub.png", TEXTURE_PIXEL_FORMAT_RGBA);
+    spritesheet.loadFromFile("assets/images/bub.png", TEXTURE_PIXEL_FORMAT_RGBA);
     sprite = Sprite::createSprite(glm::ivec2(PLAYER_WIDTH, PLAYER_HEIGTH), glm::vec2(0.25f, 0.25f), &spritesheet, &shaderProgram);
     sprite->setNumberAnimations(4);
 
@@ -44,16 +43,6 @@ void Player::update(int deltaTime) {
     const int moveSpeed = 2;
     const glm::ivec2 iSize(PLAYER_WIDTH, PLAYER_HEIGTH);
     glm::ivec2 iPos = glm::ivec2(position);
-
-    static bool eiow = false;
-    if (Game::instance().getKey(GLFW_KEY_1) && !eiow) {
-        cout << "AAAAAAA" << endl;
-        UIManager::instance().createFloatingPoints("123", glm::vec2(position + glm::vec2(TILE_SIZE, TILE_SIZE)), 1000.f);
-        eiow = true;
-    }
-    else if (!Game::instance().getKey(GLFW_KEY_1)) {
-        eiow = false;
-    }
 
     // Horizontal movement
     if (Game::instance().getKey(GLFW_KEY_LEFT)) {

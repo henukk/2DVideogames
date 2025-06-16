@@ -13,7 +13,7 @@ void Level1::init() {
     projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
     currentTime = 0.f;
 
-    AudioManager::instance().playSound("audio/music/template.mp3");
+    AudioManager::instance().playSound("assets/audio/music/template.mp3");
 }
 
 void Level1::loadLevelData() {

@@ -8,10 +8,10 @@ constexpr auto WINDOW_GAME_TITLE = "GAME TITLE";
 #define SCREEN_X 48
 #define SCREEN_Y 26
 
-constexpr auto BACKGROUND = "images/backgrounds/stage1-1.png";
-constexpr auto TILEMAP = "levels/level01.txt";
+constexpr auto BACKGROUND = "assets/images/backgrounds/stage1-1.png";
+constexpr auto TILEMAP = "assets/levels/level01.txt";
 
-constexpr auto SPRITES_IMAGE = "images/sprites.png";
+constexpr auto SPRITES_IMAGE = "assets/images/sprites.png";
 constexpr auto SPRITE_SIZE = 64.f;
 
 #define INIT_PLAYER_X_TILES 1
