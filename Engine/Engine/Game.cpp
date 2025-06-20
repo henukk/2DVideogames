@@ -1,8 +1,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Game.h"
-#include "Level1.h"
 #include "UIManager.h"
+#include "Menu.h"
+#include "Level1.h"
 
 Game::Game()
 {
@@ -25,7 +26,7 @@ void Game::init()
 	UIManager::instance().init();
 	AudioManager::instance().init();
 
-	scene = std::make_unique<Level1>();
+	scene = std::make_unique<Scenes::Menu>();
 	scene->init();
 }
 

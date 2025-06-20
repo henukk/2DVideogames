@@ -43,6 +43,9 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Scenes\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -90,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="Level1.h">
       <Filter>Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +152,12 @@
     </Filter>
     <Filter Include="Scenes\Menu">
       <UniqueIdentifier>{ea7224d2-bf41-4da4-b3a9-c5c8c0882248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{aec3dbe1-0647-4a9f-9162-d96e0a6d439d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Images\UI">
+      <UniqueIdentifier>{d5591090-3416-49c2-998e-480cd791ec24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -346,5 +358,13 @@
     <None Include="assets\shaders\simple.frag">
       <Filter>Assets\Shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\images\ui\menu.png">
+      <Filter>Assets\Images\UI</Filter>
+    </Image>
+    <Image Include="assets\images\ui\credits.png">
+      <Filter>Assets\Images\UI</Filter>
+    </Image>
   </ItemGroup>
 </Project>
