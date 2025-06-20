@@ -21,6 +21,8 @@ constexpr auto TILEMAP = "assets/levels/level01.txt";
 constexpr auto SPRITES_IMAGE = "assets/images/sprites.png";
 constexpr auto SPRITE_SIZE = 64.f;
 
+constexpr auto MENU_BANNER = "assets/images/ui/banner.png";
+
 #define INIT_PLAYER_X_TILES 1
 #define INIT_PLAYER_Y_TILES (GAME_TILES_Y - 2)
 

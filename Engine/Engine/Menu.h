@@ -19,10 +19,14 @@ namespace Scenes {
     private:
         void initShaders();
         void loadBackground();
+        void loadLogo();
 
     private:
-        Texture background, spritesheet;
-        Sprite* backgroundSprite, * banner;
+        Texture background, banner;
+        Sprite* backgroundSprite = nullptr;
+        Sprite* bannerSprite = nullptr;
+
+        glm::mat4 projection;
 
         ShaderProgram textureProgram, textProgram;
 

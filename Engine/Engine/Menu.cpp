@@ -1,11 +1,12 @@
 #include <iostream>
 #include "Menu.h"
 #include "Config.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Scenes {
     Menu::~Menu() {
         delete backgroundSprite;
-        delete banner;
+        delete bannerSprite;
     }
 
     void Menu::init() {
@@ -13,34 +14,28 @@ namespace Scenes {
 
         initShaders();
         loadBackground();
-
-
-        /*
-        if (!spritesheet.isLoaded()) {
-            spritesheet.loadFromFile(SPRITES_IMAGE, TEXTURE_PIXEL_FORMAT_RGBA);
-        }
-        int row = 0;
-        float texX = 0.f;
-        float texY = float(row) / float(SPRITE_SIZE);
-
-        banner = Sprite::createSprite(
-            glm::ivec2(2, 2) * TILE_SIZE,
-            glm::vec2(float(2) / SPRITE_SIZE, float(2) / SPRITE_SIZE),
-            &spritesheet, &textureProgram
-        );
-        banner->setTexCoordDispl(glm::vec2(texX, texY));
-        banner->setPosition(position);
-        */
+        loadLogo();
+        projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
 
         AudioManager::instance().playSound(MUSIC_MENU);
     }
 
     void Menu::update(int deltaTime) {
         if (backgroundSprite) backgroundSprite->update(deltaTime);
+        if (bannerSprite) bannerSprite->update(deltaTime);
     }
 
     void Menu::render() {
+        glm::mat4 modelview(1.0f);
+
+        textureProgram.use();
+        textureProgram.setUniformMatrix4f("projection", projection);
+        textureProgram.setUniform4f("color", 1.f, 1.f, 1.f, 1.f);
+        textureProgram.setUniformMatrix4f("modelview", modelview);
+        textureProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
+
         if (backgroundSprite) backgroundSprite->render();
+        if (bannerSprite) bannerSprite->render();
     }
 
     void Menu::initShaders() {
@@ -106,4 +101,22 @@ namespace Scenes {
         }
     }
 
+    void Menu::loadLogo() {
+        if (MENU_BANNER != nullptr) {
+            if (!banner.loadFromFile(MENU_BANNER, TEXTURE_PIXEL_FORMAT_RGBA)) {
+                std::cerr << "Error loading banner image\n";
+                return;
+            }
+
+            bannerSprite = Sprite::createSprite(
+                glm::ivec2(SCREEN_WIDTH/2, SCREEN_WIDTH/2 * 0.6119f),
+                glm::vec2(1.f, 1.f),
+                &banner,
+                &textureProgram
+            );
+
+            if (bannerSprite != nullptr)
+                bannerSprite->setPosition(glm::vec2(SCREEN_WIDTH / 4, TILE_SIZE));
+        }
+    }
 }
