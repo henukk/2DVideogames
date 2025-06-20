@@ -72,7 +72,7 @@ void Level::loadBackground() {
             std::cerr << "Error loading background image\n";
 
         backgroundSprite = Sprite::createSprite(
-            glm::ivec2(SCREEN_WIDTH, SCREEN_HEIGHT),
+            glm::ivec2(GAME_WIDTH, GAME_HEIGHT),
             glm::vec2(1, 1),
             &spritesheet,
             &texProgram

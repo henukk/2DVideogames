@@ -2,6 +2,8 @@
 #define _GAME_INCLUDE
 
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/vec2.hpp>
 #include <memory>
 #include "Scene.h"
 #include "AudioManager.h"
@@ -27,10 +29,12 @@ public:
 	void mouseRelease(int button);
 
 	bool getKey(int key) const;
+	glm::ivec2 getMousePos() const;
 
 private:
 	bool bPlay;
 	bool keys[GLFW_KEY_LAST + 1];
+	glm::ivec2 mousePos;
 
 	std::unique_ptr<Scene> scene;
 };

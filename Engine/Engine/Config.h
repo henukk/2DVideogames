@@ -3,10 +3,15 @@
 
 constexpr auto WINDOW_GAME_TITLE = "GAME TITLE";
 #define SCALE 2
-#define SCREEN_WIDTH (384*SCALE)
-#define SCREEN_HEIGHT (208*SCALE)
-#define SCREEN_X 48
-#define SCREEN_Y 26
+#define TILE_SIZE (8 * SCALE)
+
+#define GAME_TILES_X 48
+#define GAME_TILES_Y 26
+#define HUD_TILES_Y 4
+#define GAME_WIDTH (GAME_TILES_X*TILE_SIZE)
+#define GAME_HEIGHT (GAME_TILES_Y*TILE_SIZE)
+#define SCREEN_WIDTH (GAME_TILES_X*TILE_SIZE)
+#define SCREEN_HEIGHT ((GAME_TILES_Y + HUD_TILES_Y)*TILE_SIZE)
 
 constexpr auto BACKGROUND = "assets/images/backgrounds/stage1-1.png";
 constexpr auto TILEMAP = "assets/levels/level01.txt";
@@ -15,13 +20,12 @@ constexpr auto SPRITES_IMAGE = "assets/images/sprites.png";
 constexpr auto SPRITE_SIZE = 64.f;
 
 #define INIT_PLAYER_X_TILES 1
-#define INIT_PLAYER_Y_TILES (SCREEN_Y - 2)
+#define INIT_PLAYER_Y_TILES (GAME_TILES_Y - 2)
 
-#define TILE_SIZE (8 * SCALE)
 
 #define LEFT_MARGIN (1)
-#define RIGHT_MARGIN (SCREEN_X - 1)
-#define DOWN_MARGIN (SCREEN_Y - 1)
+#define RIGHT_MARGIN (GAME_TILES_X - 1)
+#define DOWN_MARGIN (GAME_TILES_Y - 1)
 #define TOP_MARGIN (TILE_SIZE * 1)
 
 #define PLAYER_WIDTH (TILE_SIZE*2)

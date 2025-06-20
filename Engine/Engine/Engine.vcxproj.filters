@@ -31,9 +31,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Level1.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
@@ -42,6 +39,9 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Scenes\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +79,6 @@
     <ClInclude Include="Quadtree.h">
       <Filter>stdExtension</Filter>
     </ClInclude>
-    <ClInclude Include="Level1.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Scenes</Filter>
     </ClInclude>
@@ -90,6 +87,9 @@
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,12 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{a124e4bc-306c-40d5-98f7-afca24261447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Levels">
+      <UniqueIdentifier>{c8f82c5c-afbc-439d-8290-54740b48375d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Menu">
+      <UniqueIdentifier>{ea7224d2-bf41-4da4-b3a9-c5c8c0882248}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

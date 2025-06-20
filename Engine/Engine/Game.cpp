@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include "Game.h"
 #include "Level1.h"
+#include "UIManager.h"
 
 Game::Game()
 {
@@ -17,8 +18,11 @@ Game& Game::instance()
 void Game::init()
 {
 	bPlay = true;
-	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	mousePos = glm::ivec2(0, 0);
 	
+	UIManager::instance().init();
 	AudioManager::instance().init();
 
 	scene = std::make_unique<Level1>();
@@ -40,12 +44,13 @@ void Game::render()
 
 void Game::shutdown()
 {
+	UIManager::instance().shutdown();
 	AudioManager::instance().shutdown();
 }
 
 void Game::keyPressed(int key)
 {
-	if(key == GLFW_KEY_ESCAPE) // Escape code
+	if(key == GLFW_KEY_ESCAPE)
 		bPlay = false;
 	keys[key] = true;
 }
@@ -55,8 +60,8 @@ void Game::keyReleased(int key)
 	keys[key] = false;
 }
 
-void Game::mouseMove(int x, int y)
-{
+void Game::mouseMove(int x, int y) {
+	mousePos = glm::ivec2(x, y);
 }
 
 void Game::mousePress(int button)
@@ -72,5 +77,7 @@ bool Game::getKey(int key) const
 	return keys[key];
 }
 
-
+glm::ivec2 Game::getMousePos() const {
+	return mousePos;
+}
 

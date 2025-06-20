@@ -14,7 +14,7 @@ TileMap* TileMap::createTileMap(const string& levelFile, ShaderProgram& program)
 
 TileMap::TileMap(const string& levelFile, ShaderProgram& program)
 	: shaderProgram(&program),
-	staticObjectTree(glm::vec2(0.0f), glm::vec2(SCREEN_X* TILE_SIZE, SCREEN_Y* TILE_SIZE))
+	staticObjectTree(glm::vec2(0.0f), glm::vec2(GAME_WIDTH, GAME_WIDTH))
 {
 	loadLevel(levelFile);
 }
@@ -31,7 +31,7 @@ void TileMap::update(int deltaTime) {
 
 	staticObjectTree = stdExtension::Quadtree<GameObject*, float>(
 		glm::vec2(0.0f),
-		glm::vec2(SCREEN_X * TILE_SIZE, SCREEN_Y * TILE_SIZE)
+		glm::vec2(GAME_WIDTH, GAME_WIDTH)
 	);
 
 	for (const auto& obj : staticObjects) {
@@ -67,7 +67,7 @@ bool TileMap::loadLevel(const string& levelFile) {
 		UnbreakableBlock::Length::X3,
 		UnbreakableBlock::Type::Vertical
 	);
-	block->init(glm::vec2(5, SCREEN_Y - 4), *shaderProgram);
+	block->init(glm::vec2(5, GAME_TILES_Y - 4), *shaderProgram);
 	staticObjectTree.insert(block.get());
 	staticObjects.push_back(std::move(block));
 
@@ -77,7 +77,7 @@ bool TileMap::loadLevel(const string& levelFile) {
 		BreakableBlock::Length::X4,
 		BreakableBlock::Type::Horizontal
 	);
-	block2->init(glm::vec2(1, SCREEN_Y - 5), *shaderProgram);
+	block2->init(glm::vec2(1, GAME_TILES_Y - 5), *shaderProgram);
 	staticObjectTree.insert(block2.get());
 	staticObjects.push_back(std::move(block2));
 
