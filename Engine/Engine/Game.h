@@ -29,11 +29,13 @@ public:
 	void mouseRelease(int button);
 
 	bool getKey(int key) const;
+	bool getKeyPressed(int key);
 	glm::ivec2 getMousePos() const;
 
 private:
 	bool bPlay;
 	bool keys[GLFW_KEY_LAST + 1];
+	bool pressedQuerries[GLFW_KEY_LAST + 1];
 	glm::ivec2 mousePos;
 
 	std::unique_ptr<Scene> scene;

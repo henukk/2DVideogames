@@ -19,6 +19,9 @@ Game& Game::instance()
 void Game::init()
 {
 	bPlay = true;
+	std::fill(std::begin(keys), std::end(keys), false);
+	std::fill(std::begin(pressedQuerries), std::end(pressedQuerries), false);
+
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	mousePos = glm::ivec2(0, 0);
@@ -59,6 +62,7 @@ void Game::keyPressed(int key)
 void Game::keyReleased(int key)
 {
 	keys[key] = false;
+	pressedQuerries[key] = false;
 }
 
 void Game::mouseMove(int x, int y) {
@@ -76,6 +80,15 @@ void Game::mouseRelease(int button)
 bool Game::getKey(int key) const
 {
 	return keys[key];
+}
+
+bool Game::getKeyPressed(int key)
+{
+	if (keys[key] && !pressedQuerries[key]) {
+		pressedQuerries[key] = true;
+		return true;
+	}
+	return false;
 }
 
 glm::ivec2 Game::getMousePos() const {

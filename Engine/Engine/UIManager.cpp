@@ -126,15 +126,35 @@ void UIManager::render() {
     glBindVertexArray(VAO);
 
     for (const auto& ft : floatingTexts) {
-        drawText(ft.text, ft.position);
+        drawText(ft.text, ft.position, 1.0f);
     }
 
     glBindVertexArray(0);
     glDisable(GL_BLEND);
 }
 
-void UIManager::drawText(const std::string& text, glm::vec2 pos) {
-    float scale = 1.0f;
+void UIManager::renderText(const std::string& text, const glm::vec2& position, const glm::vec3& color, float scale) {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    textShader.use();
+
+    glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH),
+        float(SCREEN_HEIGHT), 0.f);
+    textShader.setUniformMatrix4f("projection", projection);
+    textShader.setUniform4f("color", color.r, color.g, color.b, 1.0f);
+
+    GLint texLoc = glGetUniformLocation(textShader.getProgramID(), "tex");
+    if (texLoc != -1)
+        glUniform1i(texLoc, 0);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindVertexArray(VAO);
+    drawText(text, position, scale);
+    glBindVertexArray(0);
+    glDisable(GL_BLEND);
+}
+
+void UIManager::drawText(const std::string& text, glm::vec2 pos, float scale) {
     glm::mat4 modelview = glm::mat4(1.0f);
     textShader.setUniformMatrix4f("modelview", modelview);
     textShader.setUniform2f("texCoordDispl", 0.f, 0.f);

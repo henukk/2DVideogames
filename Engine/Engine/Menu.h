@@ -22,6 +22,10 @@ namespace Scenes {
         void loadLogo();
 
     private:
+        enum class Option { START = 0, CREDITS, COUNT };
+
+        Option selected = Option::START;
+
         Texture background, banner;
         Sprite* backgroundSprite = nullptr;
         Sprite* bannerSprite = nullptr;

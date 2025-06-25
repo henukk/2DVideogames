@@ -34,6 +34,7 @@ public:
     void update(int deltaTime);
     void render();
 
+    void renderText(const std::string& text, const glm::vec2& position, const glm::vec3& color, float scale = 1.0f);
     void createFloatingPoints(const std::string& text, const glm::vec2& position, float duration = 1000.0f);
     void createPoints(int amount, const glm::vec2& position, float duration = 1000.0f);
 
@@ -45,7 +46,7 @@ private:
     UIManager& operator=(const UIManager&) = delete;
 
     void loadFont(const std::string& fontPath, unsigned int fontSize);
-    void drawText(const std::string& text, glm::vec2 pos);
+    void drawText(const std::string& text, glm::vec2 pos, float scale);
 
 private:
     std::vector<FloatingText> floatingTexts;

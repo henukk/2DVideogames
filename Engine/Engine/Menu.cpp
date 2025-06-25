@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Menu.h"
 #include "Config.h"
+#include "Game.h"
+#include "UIManager.h"
+#include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Scenes {
@@ -23,6 +26,17 @@ namespace Scenes {
     void Menu::update(int deltaTime) {
         if (backgroundSprite) backgroundSprite->update(deltaTime);
         if (bannerSprite) bannerSprite->update(deltaTime);
+
+        if (Game::instance().getKeyPressed(GLFW_KEY_DOWN)) {
+            int val = (static_cast<int>(selected) + 1) % static_cast<int>(Menu::Option::COUNT);
+            selected = static_cast<Menu::Option>(val);
+        }
+        else if (Game::instance().getKeyPressed(GLFW_KEY_UP)) {
+            int val = static_cast<int>(selected) - 1;
+            if (val < 0)
+                val = static_cast<int>(Menu::Option::COUNT) - 1;
+            selected = static_cast<Menu::Option>(val);
+        }
     }
 
     void Menu::render() {
@@ -36,6 +50,27 @@ namespace Scenes {
 
         if (backgroundSprite) backgroundSprite->render();
         if (bannerSprite) bannerSprite->render();
+
+        glm::vec2 startPos(SCREEN_WIDTH / 2.f - TILE_SIZE * 2.f,
+            SCREEN_HEIGHT / 2.f + TILE_SIZE * 2.f);
+        glm::vec2 creditsPos(SCREEN_WIDTH / 2.f - TILE_SIZE * 2.f,
+            SCREEN_HEIGHT / 2.f + TILE_SIZE * 4.f);
+
+        glm::vec3 yellow(1.f, 1.f, 0.f);
+        glm::vec3 black(0.f, 0.f, 0.f);
+
+        UIManager::instance().renderText(
+                "START GAME",
+                startPos,
+                selected == Menu::Option::START ? yellow : black,
+                3.0f
+            );
+        UIManager::instance().renderText(
+                "CREDITS",
+                creditsPos,
+                selected == Menu::Option::CREDITS ? yellow : black,
+                3.0f
+            );
     }
 
     void Menu::initShaders() {

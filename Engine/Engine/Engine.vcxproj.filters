@@ -153,9 +153,6 @@
     <Filter Include="Scenes\Menu">
       <UniqueIdentifier>{ea7224d2-bf41-4da4-b3a9-c5c8c0882248}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HUD">
-      <UniqueIdentifier>{aec3dbe1-0647-4a9f-9162-d96e0a6d439d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assets\Images\UI">
       <UniqueIdentifier>{d5591090-3416-49c2-998e-480cd791ec24}</UniqueIdentifier>
     </Filter>
@@ -338,6 +335,12 @@
     <None Include="assets\levels\level01.txt">
       <Filter>Assets\Levels</Filter>
     </None>
+    <None Include="assets\images\ui\menu.png">
+      <Filter>Assets\Images\UI</Filter>
+    </None>
+    <None Include="assets\images\ui\credits.png">
+      <Filter>Assets\Images\UI</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\text.frag">
@@ -358,13 +361,5 @@
     <None Include="assets\shaders\simple.frag">
       <Filter>Assets\Shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\images\ui\menu.png">
-      <Filter>Assets\Images\UI</Filter>
-    </Image>
-    <Image Include="assets\images\ui\credits.png">
-      <Filter>Assets\Images\UI</Filter>
-    </Image>
   </ItemGroup>
 </Project>
