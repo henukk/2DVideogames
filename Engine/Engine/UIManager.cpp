@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Config.h"
 
-UIManager::UIManager() : VAO(0), VBO(0) {}
+UIManager::UIManager() : VAO(0), VBO(0), face(nullptr) {}
 
 UIManager::~UIManager() {}
 
@@ -21,7 +21,7 @@ void UIManager::init() {
         return;
     }
 
-    loadFont(FILE_ARCADE_FONT_1, TILE_SIZE);
+    //loadFont(TILE_SIZE);
 
     Shader vShader, fShader;
     vShader.initFromFile(VERTEX_SHADER, FILE_VERTEX_SHADER_TEXT);
@@ -53,23 +53,36 @@ void UIManager::init() {
 }
 
 void UIManager::shutdown() {
-    FT_Done_Face(face);
+    if (face)
+        FT_Done_Face(face);
     FT_Done_FreeType(ft);
+    for (auto& pair : charactersCache) {
+        for (auto& ch : pair.second) {
+            glDeleteTextures(1, &ch.second.textureID);
+        }
+    }
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
 }
 
-void UIManager::loadFont(const std::string& fontPath, unsigned int fontSize) {
-    if (FT_New_Face(ft, fontPath.c_str(), 0, &face)) {
-        std::cerr << "[UIManager] Fuente no encontrada en " << fontPath << "." << std::endl;
+void UIManager::loadFont(unsigned int fontSize) {
+    if (charactersCache.find(fontSize) != charactersCache.end())
+        return;
+
+    if (face) {
+        FT_Done_Face(face);
+        face = nullptr;
+    }
+
+    if (FT_New_Face(ft, FILE_ARCADE_FONT_1, 0, &face)) {
+        std::cerr << "[UIManager] Fuente no encontrada en " << FILE_ARCADE_FONT_1 << "." << std::endl;
         return;
     }
-    std::cout << "[UIManager] Fuente cargada correctamente." << std::endl;
 
     FT_Set_Pixel_Sizes(face, 0, fontSize);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-    characters.clear();
+    std::map<char, Character> chars;
     for (unsigned char c = 0; c < 128; ++c) {
         if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
             std::cerr << "Failed to load glyph: '" << c << "'" << std::endl;
@@ -85,13 +98,18 @@ void UIManager::loadFont(const std::string& fontPath, unsigned int fontSize) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        characters[c] = {
+        chars[c] = {
             texture,
             glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
             glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
             (unsigned int)face->glyph->advance.x
         };
     }
+
+    charactersCache[fontSize] = std::move(chars);
+
+    FT_Done_Face(face);
+    face = nullptr;
 }
 
 void UIManager::update(int deltaTime) {
@@ -126,14 +144,15 @@ void UIManager::render() {
     glBindVertexArray(VAO);
 
     for (const auto& ft : floatingTexts) {
-        drawText(ft.text, ft.position, 1.0f);
+        textShader.setUniform4f("color", ft.color.x, ft.color.y, ft.color.z, 1.0f);
+        drawText(ft.text, ft.position, ft.size);
     }
 
     glBindVertexArray(0);
     glDisable(GL_BLEND);
 }
 
-void UIManager::renderText(const std::string& text, const glm::vec2& position, const glm::vec3& color, float scale) {
+void UIManager::renderText(const std::string& text, const glm::vec2& position, const glm::vec3& color, unsigned int size) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     textShader.use();
@@ -149,25 +168,31 @@ void UIManager::renderText(const std::string& text, const glm::vec2& position, c
 
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
-    drawText(text, position, scale);
+    drawText(text, position, size);
     glBindVertexArray(0);
     glDisable(GL_BLEND);
 }
 
-void UIManager::drawText(const std::string& text, glm::vec2 pos, float scale) {
+void UIManager::drawText(const std::string& text, glm::vec2 pos, unsigned int size) {
     glm::mat4 modelview = glm::mat4(1.0f);
     textShader.setUniformMatrix4f("modelview", modelview);
     textShader.setUniform2f("texCoordDispl", 0.f, 0.f);
+    if (charactersCache.find(size) == charactersCache.end()) {
+        cout << "Font loaded for size " << size << " pixels." << endl;
+        loadFont(size);
+    }
+    const auto& characters = charactersCache[size];
     for (char c : text) {
-        if (characters.find(c) == characters.end()) continue;
+        auto it = characters.find(c);
+        if (it == characters.end()) continue;
 
-        Character ch = characters[c];
+        Character ch = it->second;
 
-        float xpos = pos.x + ch.bearing.x * scale;
-        float ypos = pos.y - (ch.size.y - ch.bearing.y) * scale;
+        float xpos = pos.x + ch.bearing.x;
+        float ypos = pos.y - (ch.size.y - ch.bearing.y);
 
-        float w = ch.size.x * scale;
-        float h = ch.size.y * scale;
+        float w = ch.size.x;
+        float h = ch.size.y;
 
         float vertices[6][4] = {
             { xpos,     ypos + h,   0.0f, 1.0f },
@@ -183,20 +208,22 @@ void UIManager::drawText(const std::string& text, glm::vec2 pos, float scale) {
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        pos.x += (ch.advance >> 6) * scale;
+        pos.x += (ch.advance >> 6);
     }
 }
 
-void UIManager::createFloatingPoints(const std::string& text, const glm::vec2& position, float duration) {
+void UIManager::createFloatingPoints(const std::string& text, const glm::vec2& position, const glm::vec3& color, unsigned int size, float duration) {
     FloatingText ft;
     ft.text = text;
     ft.position = position;
     ft.velocity = glm::vec2(0.0f, -30.0f);
+    ft.color = color;
+    ft.size = size;
     ft.lifetime = duration;
     ft.elapsed = 0.0f;
     floatingTexts.push_back(ft);
 }
 
-void UIManager::createPoints(int amount, const glm::vec2& position, float duration) {
-    createFloatingPoints("+" + std::to_string(amount), position, duration);
+void UIManager::createPoints(int amount, const glm::vec2& position, const glm::vec3& color, unsigned int size, float duration) {
+    createFloatingPoints("+" + std::to_string(amount), position, color, size, duration);
 }

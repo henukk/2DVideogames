@@ -126,5 +126,15 @@ void Player::update(int deltaTime) {
         }
     }
 
+    static bool eiow = false;
+    if (Game::instance().getKey(GLFW_KEY_1) && !eiow) {
+        //cout << "AAAAAAA" << endl;
+        UIManager::instance().createFloatingPoints("123", glm::vec2(position + glm::vec2(TILE_SIZE * 5.f / 2.f, 0)), glm::vec3(1.f), TILE_SIZE * 3 / 2, 1000.f);
+        eiow = true;
+    }
+    else if (!Game::instance().getKey(GLFW_KEY_1)) {
+        eiow = false;
+    }
+
     sprite->setPosition(position);
 }

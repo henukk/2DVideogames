@@ -5,6 +5,7 @@
 #include "UIManager.h"
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
+#include "Level1.h"
 
 namespace Scenes {
     Menu::~Menu() {
@@ -37,6 +38,14 @@ namespace Scenes {
                 val = static_cast<int>(Menu::Option::COUNT) - 1;
             selected = static_cast<Menu::Option>(val);
         }
+
+        if (Game::instance().getKeyPressed(GLFW_KEY_SPACE)) {
+            if (selected == Menu::Option::START) {
+                Game::instance().loadNewScene(std::make_unique<Level1>());
+            } else if (selected == Menu::Option::CREDITS) {
+                cout << "not yet implemented" << endl;
+            }
+        }
     }
 
     void Menu::render() {
@@ -51,26 +60,30 @@ namespace Scenes {
         if (backgroundSprite) backgroundSprite->render();
         if (bannerSprite) bannerSprite->render();
 
-        glm::vec2 startPos(SCREEN_WIDTH / 2.f - TILE_SIZE * 2.f,
-            SCREEN_HEIGHT / 2.f + TILE_SIZE * 2.f);
-        glm::vec2 creditsPos(SCREEN_WIDTH / 2.f - TILE_SIZE * 2.f,
-            SCREEN_HEIGHT / 2.f + TILE_SIZE * 4.f);
+        glm::vec2 startPos(
+            SCREEN_WIDTH / 2.f - TILE_SIZE * 8.f,
+            SCREEN_HEIGHT / 2.f + TILE_SIZE * 4.f
+        );
+        glm::vec2 creditsPos(
+            SCREEN_WIDTH / 2.f - TILE_SIZE * 8.f,
+            SCREEN_HEIGHT / 2.f + TILE_SIZE * 7.f
+        );
 
         glm::vec3 yellow(1.f, 1.f, 0.f);
         glm::vec3 black(0.f, 0.f, 0.f);
 
         UIManager::instance().renderText(
-                "START GAME",
-                startPos,
-                selected == Menu::Option::START ? yellow : black,
-                3.0f
-            );
+            "START GAME",
+            startPos,
+            selected == Menu::Option::START ? yellow : black,
+            3 * TILE_SIZE
+        );
         UIManager::instance().renderText(
-                "CREDITS",
-                creditsPos,
-                selected == Menu::Option::CREDITS ? yellow : black,
-                3.0f
-            );
+            "CREDITS",
+            creditsPos,
+            selected == Menu::Option::CREDITS ? yellow : black,
+            3 * TILE_SIZE
+        );
     }
 
     void Menu::initShaders() {

@@ -2,7 +2,7 @@
 #include "AudioManager.h"
 #include <iostream>
 
-AudioManager::AudioManager() : musicInitialized(false) {}
+AudioManager::AudioManager() : musicInitialized(false), engineInitialized(false) {}
 
 AudioManager::~AudioManager() {
 
@@ -14,7 +14,6 @@ AudioManager& AudioManager::instance() {
 }
 
 void AudioManager::init() {
-    static bool engineInitialized = false;
     if (engineInitialized) {
         return;
     }
@@ -30,6 +29,7 @@ void AudioManager::init() {
 void AudioManager::shutdown() {
     stopMusic();
     ma_engine_uninit(&engine);
+    engineInitialized = false;
 }
 
 void AudioManager::playSound(const std::string& filePath) {

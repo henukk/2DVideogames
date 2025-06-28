@@ -26,6 +26,7 @@ private:
     ma_engine engine;
     ma_sound music;
     bool musicInitialized;
+    bool engineInitialized;
 };
 
 #endif // _AUDIO_MANAGER_INCLUDE

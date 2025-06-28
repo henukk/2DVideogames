@@ -32,6 +32,8 @@ public:
 	bool getKeyPressed(int key);
 	glm::ivec2 getMousePos() const;
 
+	void loadNewScene(std::unique_ptr<Scene> newScene);
+
 private:
 	bool bPlay;
 	bool keys[GLFW_KEY_LAST + 1];

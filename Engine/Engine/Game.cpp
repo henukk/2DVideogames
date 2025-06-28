@@ -33,6 +33,23 @@ void Game::init()
 	scene->init();
 }
 
+
+void Game::loadNewScene(std::unique_ptr<Scene> newScene) {
+	std::fill(std::begin(keys), std::end(keys), false);
+	std::fill(std::begin(pressedQuerries), std::end(pressedQuerries), false);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	//UIManager::instance().init();
+
+	AudioManager::instance().shutdown();
+	AudioManager::instance().init();
+
+
+	scene = std::move(newScene);
+	scene->init();
+}
+
 bool Game::update(int deltaTime)
 {
 	scene->update(deltaTime);
