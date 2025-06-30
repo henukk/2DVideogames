@@ -132,7 +132,7 @@ void UIManager::render() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     textShader.use();
 
-    glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGHT), 0.f);
+    glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH), float(SCREEN_HEIGTH), 0.f);
     textShader.setUniformMatrix4f("projection", projection);
     textShader.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -158,7 +158,7 @@ void UIManager::renderText(const std::string& text, const glm::vec2& position, c
     textShader.use();
 
     glm::mat4 projection = glm::ortho(0.f, float(SCREEN_WIDTH),
-        float(SCREEN_HEIGHT), 0.f);
+        float(SCREEN_HEIGTH), 0.f);
     textShader.setUniformMatrix4f("projection", projection);
     textShader.setUniform4f("color", color.r, color.g, color.b, 1.0f);
 

@@ -3,12 +3,15 @@
 
 #include "Level.h"
 
-class Level1 : public Level {
-public:
-    void init() override;
+namespace Scenes {
+    class Level1 : public Level {
+    public:
+        void init() override;
+        void update(int deltaTime) override;
 
-private:
-    void loadLevelData() override;
-};
+    private:
+        void loadLevelData() override;
+    };
+}
 
 #endif // _LEVEL1_INCLUDE

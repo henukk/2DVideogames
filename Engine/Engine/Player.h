@@ -17,7 +17,7 @@ private:
     int jumpAngle, startY;
 
     static constexpr int JUMP_ANGLE_STEP = 4;
-    static constexpr int JUMP_HEIGHT = 96;
+    static constexpr int JUMP_HEIGTH = 96;
     static constexpr int FALL_STEP = 4;
 
     enum PlayerAnims {

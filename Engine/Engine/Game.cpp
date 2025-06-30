@@ -33,6 +33,9 @@ void Game::init()
 	scene->init();
 }
 
+void Game::exitGame() {
+	bPlay = false;
+}
 
 void Game::loadNewScene(std::unique_ptr<Scene> newScene) {
 	std::fill(std::begin(keys), std::end(keys), false);
@@ -71,8 +74,6 @@ void Game::shutdown()
 
 void Game::keyPressed(int key)
 {
-	if(key == GLFW_KEY_ESCAPE)
-		bPlay = false;
 	keys[key] = true;
 }
 

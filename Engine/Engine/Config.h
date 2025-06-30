@@ -2,16 +2,16 @@
 #define _CONFIG_INCLUDE
 
 constexpr auto WINDOW_GAME_TITLE = "GAME TITLE";
-#define SCALE 2
+#define SCALE 3
 #define TILE_SIZE (8 * SCALE)
 
 #define GAME_TILES_X 48
 #define GAME_TILES_Y 26
 #define HUD_TILES_Y 4
 #define GAME_WIDTH (GAME_TILES_X*TILE_SIZE)
-#define GAME_HEIGHT (GAME_TILES_Y*TILE_SIZE)
+#define GAME_HEIGTH (GAME_TILES_Y*TILE_SIZE)
 #define SCREEN_WIDTH (GAME_TILES_X*TILE_SIZE)
-#define SCREEN_HEIGHT ((GAME_TILES_Y + HUD_TILES_Y)*TILE_SIZE)
+#define SCREEN_HEIGTH ((GAME_TILES_Y + HUD_TILES_Y)*TILE_SIZE)
 
 constexpr auto BACKGROUND_MENU = "assets/images/ui/menu.png";
 constexpr auto BACKGROUND_CREDITS = "assets/images/ui/credits.png";
@@ -47,6 +47,7 @@ constexpr auto FILE_ARCADE_FONT_4 = "assets/fonts/Silkscreen-Regular.ttf";
 constexpr auto FILE_ARCADE_FONT_5 = "assets/fonts/VT323-Regular.ttf";
 
 constexpr auto MUSIC_MENU = "assets/audio/music/template.mp3";
+constexpr auto MUSIC_CREDITS = "assets/audio/music/template.mp3";
 
 
 #endif // _CONFIG_INCLUDE

@@ -88,7 +88,7 @@ void Player::update(int deltaTime) {
             position.y = float(startY);
         }
         else {
-            float newY = startY - JUMP_HEIGHT * sin(3.14159f * jumpAngle / 180.f);
+            float newY = startY - JUMP_HEIGTH * sin(3.14159f * jumpAngle / 180.f);
             glm::ivec2 tryPos = glm::ivec2(position.x, int(newY));
             int correctedY;
 

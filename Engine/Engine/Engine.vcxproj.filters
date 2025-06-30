@@ -46,6 +46,9 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Scenes\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Credits.cpp">
+      <Filter>Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
@@ -95,6 +98,9 @@
       <Filter>Scenes\Levels</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Credits.h">
       <Filter>Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>

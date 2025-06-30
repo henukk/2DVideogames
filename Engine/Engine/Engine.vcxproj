@@ -15,6 +15,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BreakableBlock.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BreakableBlock.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />

@@ -21,6 +21,7 @@ public:
 	bool update(int deltaTime);
 	void render();
 	void shutdown();
+	void exitGame();
 
 	void keyPressed(int key);
 	void keyReleased(int key);
