@@ -173,6 +173,25 @@ void UIManager::renderText(const std::string& text, const glm::vec2& position, c
     glDisable(GL_BLEND);
 }
 
+
+glm::vec2 UIManager::getDimension(const std::string& text, unsigned int size) {
+    if (charactersCache.find(size) == charactersCache.end()) {
+        loadFont(size);
+    }
+    const auto& characters = charactersCache[size];
+    float width = 0.0f;
+    float max_height = 0.0f;
+    for (char c : text) {
+        auto it = characters.find(c);
+        if (it == characters.end()) continue;
+        const Character& ch = it->second;
+        width += (ch.advance >> 6);
+        if (ch.size.y > max_height) max_height = ch.size.y;
+    }
+    return glm::vec2(width, max_height);
+}
+
+
 void UIManager::drawText(const std::string& text, glm::vec2 pos, unsigned int size) {
     glm::mat4 modelview = glm::mat4(1.0f);
     textShader.setUniformMatrix4f("modelview", modelview);

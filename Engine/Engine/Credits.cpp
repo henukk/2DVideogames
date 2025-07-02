@@ -85,9 +85,13 @@ namespace Scenes {
         );
 
 
+        glm::vec2 botRightInfo(
+            SCREEN_WIDTH - UIManager::instance().getDimension("ESC: RETURN MENU", TILE_SIZE).x - TILE_SIZE / 4.f,
+            SCREEN_HEIGTH - TILE_SIZE
+        );
         UIManager::instance().renderText(
             "ESC: RETURN MENU",
-            glm::ivec2(SCREEN_WIDTH - (8 * TILE_SIZE), SCREEN_HEIGTH - TILE_SIZE) - glm::ivec2(TILE_SIZE, 0) / 2,
+            botRightInfo,
             textColor,
             TILE_SIZE
         );

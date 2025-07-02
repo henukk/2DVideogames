@@ -66,28 +66,42 @@ namespace Scenes {
         if (bannerSprite) bannerSprite->render();
 
         glm::vec2 startPos(
-            SCREEN_WIDTH / 2.f - TILE_SIZE * 8.f,
-            SCREEN_HEIGTH / 2.f + TILE_SIZE * 4.f
+            SCREEN_WIDTH / 2.f - UIManager::instance().getDimension("START GAME", 3 * TILE_SIZE).x/2.f,
+            SCREEN_HEIGTH / 2.f + TILE_SIZE * 2.f
         );
         glm::vec2 creditsPos(
-            SCREEN_WIDTH / 2.f - TILE_SIZE * 8.f,
-            SCREEN_HEIGTH / 2.f + TILE_SIZE * 7.f
+            SCREEN_WIDTH / 2.f - UIManager::instance().getDimension("CREDITS", 3 * TILE_SIZE).x/2.f,
+            SCREEN_HEIGTH / 2.f + TILE_SIZE * 5.f
         );
 
-        glm::vec3 yellow(1.f, 1.f, 0.f);
-        glm::vec3 black(0.f, 0.f, 0.f);
+        //glm::vec3 sellected(0.7f, 0.09f, 0.19f); //DARK RED
+        glm::vec3 sellected(0.92f, 0.22f, 0.24f);  //LIGHT RED
+        glm::vec3 notSelected(0.f, 0.f, 0.f);
 
         UIManager::instance().renderText(
             "START GAME",
             startPos,
-            selected == Menu::Option::START ? yellow : black,
+            selected == Menu::Option::START ? sellected : notSelected,
             3 * TILE_SIZE
         );
+
         UIManager::instance().renderText(
             "CREDITS",
             creditsPos,
-            selected == Menu::Option::CREDITS ? yellow : black,
+            selected == Menu::Option::CREDITS ? sellected : notSelected,
             3 * TILE_SIZE
+        );
+
+
+        glm::vec2 botRightInfo(
+            SCREEN_WIDTH - UIManager::instance().getDimension("SPACE: SELECT OPTION | ESC: RETURN MENU", TILE_SIZE).x - TILE_SIZE / 4.f,
+            SCREEN_HEIGTH - TILE_SIZE
+        );
+        UIManager::instance().renderText(
+            "SPACE: SELECT OPTION | ESC: RETURN MENU",
+            botRightInfo,
+            glm::vec3(0.98f, 0.92f, 0.78f),
+            TILE_SIZE
         );
     }
 

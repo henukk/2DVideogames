@@ -37,6 +37,7 @@ public:
     void update(int deltaTime);
     void render();
 
+    glm::vec2 getDimension(const std::string& text, unsigned int size);
     void renderText(const std::string& text, const glm::vec2& position, const glm::vec3& color, unsigned int size);
     void createFloatingPoints(const std::string& text, const glm::vec2& position, const glm::vec3& color, unsigned int size, float duration = 1000.0f);
     void createPoints(int amount, const glm::vec2& position, const glm::vec3& color, unsigned int size, float duration = 1000.0f);
