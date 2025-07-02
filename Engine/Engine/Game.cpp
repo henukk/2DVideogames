@@ -87,23 +87,37 @@ void Game::mouseMove(int x, int y) {
 	mousePos = glm::ivec2(x, y);
 }
 
-void Game::mousePress(int button)
-{
+void Game::mousePress(int button) {
+	if (button >= 0 && button <= GLFW_MOUSE_BUTTON_LAST)
+		mouseKeys[button] = true;
 }
 
-void Game::mouseRelease(int button)
-{
+void Game::mouseRelease(int button) {
+	if (button >= 0 && button <= GLFW_MOUSE_BUTTON_LAST) {
+		mouseKeys[button] = false;
+		mousePressedQuerries[button] = false;
+	}
 }
 
-bool Game::getKey(int key) const
-{
+bool Game::getKey(int key) const {
 	return keys[key];
 }
 
-bool Game::getKeyPressed(int key)
-{
+bool Game::getKeyPressed(int key) {
 	if (keys[key] && !pressedQuerries[key]) {
 		pressedQuerries[key] = true;
+		return true;
+	}
+	return false;
+}
+
+bool Game::getMouse(int key) const {
+	return mouseKeys[key];
+}
+
+bool Game::getMousePressed(int key) {
+	if (mouseKeys[key] && !mousePressedQuerries[key]) {
+		mousePressedQuerries[key] = true;
 		return true;
 	}
 	return false;
