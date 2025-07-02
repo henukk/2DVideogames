@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include "Texture.h"
 #include "ShaderProgram.h"
+#include "LevelData.h"
 #include "DynamicObject.h"
 #include "StaticObject.h"
 #include "Quadtree.h"
@@ -14,10 +15,10 @@
 class TileMap
 {
 private:
-	TileMap(const std::string& levelFile, ShaderProgram& program);
+	TileMap(const LevelData& data, ShaderProgram& program);
 
 public:
-	static TileMap* createTileMap(const std::string& levelFile, ShaderProgram& program);
+	static TileMap* createTileMap(const LevelData& data, ShaderProgram& program);
 
 	~TileMap();
 
@@ -31,7 +32,7 @@ public:
 	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
 
 private:
-	bool loadLevel(const std::string& levelFile);
+	bool loadLevel(const LevelData& data);
 
 private:
 	std::list<std::unique_ptr<DynamicObject>> dynamicObjects;

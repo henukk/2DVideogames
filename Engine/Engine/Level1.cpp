@@ -20,7 +20,25 @@ namespace Scenes {
     }
 
     void Level1::loadLevelData() {
-        map = TileMap::createTileMap("TILEMAP", texProgram);
+        LevelData data;
+
+        TileEntry tile1;
+        tile1.type = TileEntry::TileType::Unbreakable;
+        tile1.color = TileEntry::BlockColor::Blue;
+        tile1.length = TileEntry::BlockLength::X3;
+        tile1.orientation = TileEntry::BlockType::Vertical;
+        tile1.position = glm::ivec2(5, GAME_TILES_Y - 4);
+        data.addTile(tile1);
+
+        TileEntry tile2;
+        tile2.type = TileEntry::TileType::Breakable;
+        tile2.color = TileEntry::BlockColor::Red;
+        tile2.length = TileEntry::BlockLength::X4;
+        tile2.orientation = TileEntry::BlockType::Horizontal;
+        tile2.position = glm::ivec2(1, GAME_TILES_Y - 5);
+        data.addTile(tile2);
+
+        map = TileMap::createTileMap(data, texProgram);
 
         player = new Player(map);
         player->init(glm::ivec2(0, 0), texProgram);

@@ -7,16 +7,16 @@
 
 using namespace std;
 
-TileMap* TileMap::createTileMap(const string& levelFile, ShaderProgram& program)
+TileMap* TileMap::createTileMap(const LevelData& data, ShaderProgram& program)
 {
-	return new TileMap(levelFile, program);
+	return new TileMap(data, program);
 }
 
-TileMap::TileMap(const string& levelFile, ShaderProgram& program)
+TileMap::TileMap(const LevelData& data, ShaderProgram& program)
 	: shaderProgram(&program),
 	staticObjectTree(glm::vec2(0.0f), glm::vec2(GAME_WIDTH, GAME_WIDTH))
 {
-	loadLevel(levelFile);
+	loadLevel(data);
 }
 
 TileMap::~TileMap() {}
@@ -60,27 +60,31 @@ void TileMap::free() {
 	staticObjects.clear();
 }
 
-bool TileMap::loadLevel(const string& levelFile) {
-	auto block = std::make_unique<UnbreakableBlock>(
-		this,
-		UnbreakableBlock::Color::Blue,
-		UnbreakableBlock::Length::X3,
-		UnbreakableBlock::Type::Vertical
-	);
-	block->init(glm::vec2(5, GAME_TILES_Y - 4), *shaderProgram);
-	staticObjectTree.insert(block.get());
-	staticObjects.push_back(std::move(block));
-
-	auto block2 = std::make_unique<BreakableBlock>(
-		this,
-		BreakableBlock::Color::Red,
-		BreakableBlock::Length::X4,
-		BreakableBlock::Type::Horizontal
-	);
-	block2->init(glm::vec2(1, GAME_TILES_Y - 5), *shaderProgram);
-	staticObjectTree.insert(block2.get());
-	staticObjects.push_back(std::move(block2));
-
+bool TileMap::loadLevel(const LevelData& data) {
+	for (const auto& tile : data.getTiles()) {
+		if (tile.type == TileEntry::TileType::Unbreakable) {
+			auto block = std::make_unique<UnbreakableBlock>(
+				this,
+				static_cast<UnbreakableBlock::Color>(static_cast<int>(tile.color)),
+				static_cast<UnbreakableBlock::Length>(static_cast<int>(tile.length)),
+				static_cast<UnbreakableBlock::Type>(static_cast<int>(tile.orientation))
+			);
+			block->init(tile.position, *shaderProgram);
+			staticObjectTree.insert(block.get());
+			staticObjects.push_back(std::move(block));
+		}
+		else if (tile.type == TileEntry::TileType::Breakable) {
+			auto block = std::make_unique<BreakableBlock>(
+				this,
+				static_cast<BreakableBlock::Color>(static_cast<int>(tile.color)),
+				static_cast<BreakableBlock::Length>(static_cast<int>(tile.length)),
+				static_cast<BreakableBlock::Type>(static_cast<int>(tile.orientation))
+			);
+			block->init(tile.position, *shaderProgram);
+			staticObjectTree.insert(block.get());
+			staticObjects.push_back(std::move(block));
+		}
+	}
 	return true;
 }
 

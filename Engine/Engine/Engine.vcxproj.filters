@@ -103,6 +103,9 @@
     <ClInclude Include="Credits.h">
       <Filter>Scenes\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="LevelData.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">

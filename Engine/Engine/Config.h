@@ -16,7 +16,6 @@ constexpr auto WINDOW_GAME_TITLE = "GAME TITLE";
 constexpr auto BACKGROUND_MENU = "assets/images/ui/menu.png";
 constexpr auto BACKGROUND_CREDITS = "assets/images/ui/credits.png";
 constexpr auto BACKGROUND = "assets/images/backgrounds/stage1-1.png";
-constexpr auto TILEMAP = "assets/levels/level01.txt";
 
 constexpr auto SPRITES_IMAGE = "assets/images/sprites.png";
 constexpr auto SPRITE_SIZE = 64.f;

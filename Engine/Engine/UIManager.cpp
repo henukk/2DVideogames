@@ -186,7 +186,7 @@ glm::vec2 UIManager::getDimension(const std::string& text, unsigned int size) {
         if (it == characters.end()) continue;
         const Character& ch = it->second;
         width += (ch.advance >> 6);
-        if (ch.size.y > max_height) max_height = ch.size.y;
+        if (ch.size.y > max_height) max_height = float(ch.size.y);
     }
     return glm::vec2(width, max_height);
 }
@@ -210,8 +210,8 @@ void UIManager::drawText(const std::string& text, glm::vec2 pos, unsigned int si
         float xpos = pos.x + ch.bearing.x;
         float ypos = pos.y - (ch.size.y - ch.bearing.y);
 
-        float w = ch.size.x;
-        float h = ch.size.y;
+        float w = float(ch.size.x);
+        float h = float(ch.size.y);
 
         float vertices[6][4] = {
             { xpos,     ypos + h,   0.0f, 1.0f },
