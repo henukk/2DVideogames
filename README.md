@@ -1,4 +1,4 @@
-# 🎮 2D Videogames: Retro Tributes
+# 🎮 2D Retro Engine
 
 A **2D engine written in C++/OpenGL** to create and play retro-style games (Pang, Bomberman, etc.).  
 Includes a demo level, main menu, and credits.  
